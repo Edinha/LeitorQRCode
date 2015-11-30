@@ -10,12 +10,40 @@ public class Local {
     private Location location;
     private String text;
 
-    public Local (Location l, String t) {
-        this.location = l;
-        this.text = t;
+    public Local() {
+        this.location = new Location("reverseGeocoded");
     }
 
-    public Location getLocation() {return this.location;}
-    public String getText() {return this.text;}
+    public Local(Location location,String text) {
+        this.text = text;
+        this.location = location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void setLocationLongitude(double longitude) {
+        this.location.setLongitude(longitude);
+
+    }
+
+
+    public void setLocationLatitude(double latitude) {
+        this.location.setLatitude(latitude);
+    }
+
+    public void setText(String text) {
+
+        this.text = text;
+    }
+
+    public Location getLocation() {
+        return this.location;
+    }
+
+    public String getText() {
+        return this.text;
+    }
 
 }

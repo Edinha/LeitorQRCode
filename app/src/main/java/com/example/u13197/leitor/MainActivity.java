@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         @Override
                         public void run() {
                             //guardar o result referente aquela localização
-
                             MainActivity.this.locations.add(new Local(atual, result));
                         }
                     });
