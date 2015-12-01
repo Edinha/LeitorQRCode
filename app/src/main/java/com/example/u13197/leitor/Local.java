@@ -17,6 +17,8 @@ public class Local {
     public Local(Location location,String text) {
         this.text = text;
         this.location = location;
+        this.location.setAccuracy(3333);
+        this.location.setBearing(333);
     }
 
     public void setLocation(Location location) {
