@@ -20,6 +20,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onProviderEnabled(String provider) {}
             public void onProviderDisabled(String provider) {}
         };
+
 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
     }

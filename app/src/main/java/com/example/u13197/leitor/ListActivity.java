@@ -1,5 +1,6 @@
 package com.example.u13197.leitor;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
@@ -32,6 +34,8 @@ public class ListActivity extends AppCompatActivity {
         listView.setAdapter(mAdapter);
 
         mPresenter.loadLocalsFromXML();
+
+
     }
 
     // será chamado pelo presenter <?>

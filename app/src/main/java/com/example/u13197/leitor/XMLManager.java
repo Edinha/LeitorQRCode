@@ -22,6 +22,7 @@ import java.util.List;
 /**
  * Created by root on 30/11/15.
  */
+//todos os métodos devem ser chamados dentro de assync task
 public class XMLManager {
 
     public final static String FILE_NAME = "/Locais.xml";//Nome do arquivo xml
@@ -37,17 +38,27 @@ public class XMLManager {
         Resources resources = context.getResources();
         String applicationName = resources.getText(resources.getIdentifier(APP_NAME, "string", context.getPackageName())).toString();
         String externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
-        String path = externalStorage.concat("/").concat(applicationName).concat(FILE_NAME);
-        File file = new File(path);
+        String dirPath = externalStorage.concat("/").concat(applicationName);
+        File dir = new File(dirPath);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        boolean firstTime = false;
+        String filePath = dirPath.concat(FILE_NAME);
+        File file = new File(filePath);
         if (!file.exists()) {
             file.createNewFile();
+            firstTime = true;
         }
 
         FileOutputStream fileOutputStream = new FileOutputStream(file, true);//append
         XmlSerializer serializer = Xml.newSerializer();
         StringWriter writer = new StringWriter();
         serializer.setOutput(writer);
-        serializer.startDocument("UTF-8", true);
+        if (firstTime) {
+            serializer.startDocument("UTF-8", true);
+        }
+
         serializer.startTag(null, MAIN_OBJECT_NAME);
         serializer.startTag(null, INTERNAL_OBJECT_NAME);
         serializer.startTag(null, INTERNAL_FIELD_ONE);
@@ -88,22 +99,30 @@ public class XMLManager {
         while (event != XmlPullParser.END_DOCUMENT) {
             String tagName = null;
             Local local = new Local();
+            parser.next();
 
             do {
                 event = parser.next();
+                if (event == XmlPullParser.END_DOCUMENT) {
+                    return locals;
+
+                }
                 tagName = parser.getName();
                 switch (event) {
                     case XmlPullParser.START_TAG: {
                         if (tagName.equalsIgnoreCase(INTERNAL_FIELD_ONE)) {
+                            parser.next();
                             local.setLocationLatitude(Double.parseDouble(parser.getText()));
 
                         } else {
 
                             if (tagName.equalsIgnoreCase(INTERNAL_FIELD_TWO)) {
+                                parser.next();
                                 local.setLocationLongitude(Double.parseDouble(parser.getText()));
                             } else {
 
                                 if (tagName.equalsIgnoreCase(FIELD_ONE)) {
+                                    parser.next();
                                     local.setText(parser.getText());
                                 }
                             }
@@ -111,10 +130,11 @@ public class XMLManager {
 
                     }
 
+
                 }
 
             }
-            while (!tagName.equalsIgnoreCase(MAIN_OBJECT_NAME) && event != XmlPullParser.END_DOCUMENT);
+            while (!tagName.equalsIgnoreCase(MAIN_OBJECT_NAME));
 
             locals.add(local);
 
