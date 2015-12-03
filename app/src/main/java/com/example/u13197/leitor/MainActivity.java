@@ -9,26 +9,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.w3c.dom.Text;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private TextView txt;
+    private MainPresenter mPresenter;
+
+    private TextView mText;
     private android.os.Handler handler = new Handler();
-
 
     private List<Local> locations;
     private Location atual;
@@ -38,14 +38,30 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mPresenter = new MainPresenter(this);
+        mText = (TextView) findViewById(R.id.text);
+
         locations = new ArrayList<Local>();
-        txt = (TextView) findViewById(R.id.txtScan);
 
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
             // quando a posição muda, atualiza o location
             public void onLocationChanged(Location location) {
-               MainActivity.this.atual = location;
+                if (MainActivity.this.atual == null)    // primeira vez
+                {
+                    CheckBox box = (CheckBox) findViewById(R.id.checkBox);
+                    box.setText("Localização encontrada");
+                    box.setChecked(true);
+
+                    Button scan = (Button) findViewById(R.id.scan);
+                    scan.setEnabled(true);
+
+                    ProgressBar bar = (ProgressBar) findViewById(R.id.progressbar);
+                    bar.setVisibility(View.GONE);
+                }
+
+                MainActivity.this.atual = location;
             }
             public void onStatusChanged(String provider, int status, Bundle extras) {}
             public void onProviderEnabled(String provider) {}
@@ -56,13 +72,20 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
     }
 
-    public void onClickScan(View v) {
+    public void onScanClick(View v) {
         //iniciar o scan de qr code
-        new IntentIntegrator(this).initiateScan();
+        if (atual != null)
+            new IntentIntegrator(this).initiateScan();
+        else
+            Toast.makeText(this, "Por favor, aguarde até que sua localização seja encontrada", Toast.LENGTH_LONG)
+                .show();
     }
 
-    public void onClickMaps(View v) {
+    public void onListClick(View v) {
         // mostrar google maps com as parada tudo
+        // TODO: open listview
+
+        /*
 
         for (Local l : this.locations) {
             LatLng lg = new LatLng(l.getLocation().getLatitude(), l.getLocation().getLongitude());
@@ -70,6 +93,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     .title(l.getText())
                     .position(lg));
         }
+
+        */
+
+        Intent intent = new Intent(this, ListActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -91,6 +119,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 final String result = scanResult.getContents();
 
                 if (result != null) {
+                    mPresenter.savePlace(new Local(atual, result));
+                    mText.setText(result);
+                    /*
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -98,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                             MainActivity.this.locations.add(new Local(atual, result));
                         }
                     });
+                    */
                 }
         }
     }
@@ -106,5 +138,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         this.map = googleMap;
         map.setMyLocationEnabled(true);
+    }
+
+    public void onPlaceSaved() {
+        Toast.makeText(this, "Localização salva", Toast.LENGTH_SHORT).show();
+    }
+
+    public void onPlaceFailedSave() {
+        Toast.makeText(this, "Falha ao salvar localização", Toast.LENGTH_SHORT).show();
     }
 }

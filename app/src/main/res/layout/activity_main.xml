@@ -4,36 +4,52 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
-
-    <!--<TextView android:text="Hello World!" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />-->
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="@android:color/holo_blue_light">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Scan"
-        android:id="@+id/btn"
-        android:onClick="onClickScan"
-        android:layout_below="@+id/txtScan"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Scan view"
-        android:id="@+id/txtScan"
-        android:layout_alignParentTop="true"
+        android:text="Escanear"
+        android:id="@+id/scan"
+        android:onClick="onScanClick"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="onClickMaps"/>
+        android:enabled="false"/>
 
     <Button
+        android:layout_below="@id/scan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Listar"
+        android:id="@+id/list"
+        android:layout_centerHorizontal="true"
+        android:onClick="onListClick"/>
+
+    <CheckBox
+        android:layout_marginTop="8dp"
+        android:enabled="false"
+        android:checked="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Maps"
-        android:id="@+id/idMaps"
-        android:layout_alignBottom="@+id/btn"
-        android:layout_centerHorizontal="true" />
+        android:text="Encontrando localização..."
+        android:id="@+id/checkBox"
+        android:layout_centerHorizontal="true"
+
+        android:layout_centerVertical="true"/>
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:indeterminate="true"
+        android:layout_toLeftOf="@id/checkBox"
+        android:layout_alignBottom="@id/checkBox"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

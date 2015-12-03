@@ -25,12 +25,12 @@ import java.util.List;
 //todos os métodos devem ser chamados dentro de assync task
 public class XMLManager {
 
-    public final static String FILE_NAME = "/Locais.xml";//Nome do arquivo xml
-    public final static String MAIN_OBJECT_NAME = "LOCAL"; // primeiro nó,corresponde a um obj Local
-    public final static String INTERNAL_OBJECT_NAME = "LOCATION"; //objeto location
-    public final static String INTERNAL_FIELD_ONE = "LATITUDE";//campo latitude interno ao objeto de localizacao
-    public final static String INTERNAL_FIELD_TWO = "LONGITUDE";//campo longitude interno ao objeto de localizacao
-    public final static String FIELD_ONE = "TEXT";//campo que equivale ao texto lido do QRCode
+    public final static String FILE_NAME = "/places.xml";//Nome do arquivo xml
+    public final static String MAIN_OBJECT_NAME = "place"; // primeiro nó,corresponde a um obj Local
+    public final static String INTERNAL_OBJECT_NAME = "location"; //objeto location
+    public final static String INTERNAL_FIELD_ONE = "latitude";//campo latitude interno ao objeto de localizacao
+    public final static String INTERNAL_FIELD_TWO = "longitude";//campo longitude interno ao objeto de localizacao
+    public final static String FIELD_ONE = "info";//campo que equivale ao texto lido do QRCode
     public final static String APP_NAME = "app_name";
 
     //Salva no SD card no External Storage do aplicativo, da pra copiar do SD card e mandar junto com projeto

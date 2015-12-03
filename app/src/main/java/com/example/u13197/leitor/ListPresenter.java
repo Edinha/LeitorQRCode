@@ -18,6 +18,9 @@ public class ListPresenter {
 
     public void loadLocalsFromXML() {
         // TODO: carregar do xml
+
+        new ListAsyncTask(this).execute(mView);
+        /*
         // teste
         List<Local> localList = new ArrayList<>();
 
@@ -32,5 +35,14 @@ public class ListPresenter {
         localList.add(new Local(a, "Location a"));
         localList.add(new Local(b, "Location b"));
         mView.displayLocals(localList);
+        */
+    }
+
+    public void onListFailed(Exception e) {
+
+    }
+
+    public void onPlacesLoaded(List<Local> locals) {
+        mView.displayLocals(locals);
     }
 }
