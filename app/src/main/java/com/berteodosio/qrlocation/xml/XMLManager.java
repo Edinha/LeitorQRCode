@@ -1,11 +1,11 @@
-package com.example.u13197.leitor.xml;
+package com.berteodosio.qrlocation.xml;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Environment;
 import android.util.Xml;
 
-import com.example.u13197.leitor.model.Local;
+import com.berteodosio.qrlocation.model.Local;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

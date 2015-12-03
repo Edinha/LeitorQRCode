@@ -1,10 +1,10 @@
-package com.example.u13197.leitor.presenter;
+package com.berteodosio.qrlocation.presenter;
 
 import android.content.Context;
 
-import com.example.u13197.leitor.asynctask.LoadLocationAsyncTask;
-import com.example.u13197.leitor.model.Local;
-import com.example.u13197.leitor.view.DisplayPlacesView;
+import com.berteodosio.qrlocation.asynctask.LoadLocationAsyncTask;
+import com.berteodosio.qrlocation.view.DisplayPlacesView;
+import com.berteodosio.qrlocation.model.Local;
 
 import java.util.List;
 

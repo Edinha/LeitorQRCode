@@ -1,8 +1,8 @@
-package com.example.u13197.leitor.presenter;
+package com.berteodosio.qrlocation.presenter;
 
-import com.example.u13197.leitor.model.Local;
-import com.example.u13197.leitor.asynctask.MainAsyncTask;
-import com.example.u13197.leitor.activity.MainActivity;
+import com.berteodosio.qrlocation.activity.MainActivity;
+import com.berteodosio.qrlocation.asynctask.MainAsyncTask;
+import com.berteodosio.qrlocation.model.Local;
 
 /**
  * Created by bernardo on 03/12/15.

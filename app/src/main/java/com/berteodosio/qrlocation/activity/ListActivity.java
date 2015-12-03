@@ -1,4 +1,4 @@
-package com.example.u13197.leitor.activity;
+package com.berteodosio.qrlocation.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.u13197.leitor.adapter.ListAdapter;
-import com.example.u13197.leitor.presenter.LoadLocationPresenter;
-import com.example.u13197.leitor.model.Local;
-import com.example.u13197.leitor.R;
-import com.example.u13197.leitor.view.DisplayPlacesView;
+import com.berteodosio.qrlocation.view.DisplayPlacesView;
+import com.berteodosio.qrlocation.adapter.ListAdapter;
+import com.berteodosio.qrlocation.presenter.LoadLocationPresenter;
+import com.berteodosio.qrlocation.model.Local;
+import com.berteodosio.u13197.leitor.R;
 
 import java.util.List;
 

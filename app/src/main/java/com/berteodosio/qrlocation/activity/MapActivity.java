@@ -1,4 +1,4 @@
-package com.example.u13197.leitor.activity;
+package com.berteodosio.qrlocation.activity;
 
 import android.location.Location;
 import android.os.Bundle;
@@ -8,10 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.example.u13197.leitor.R;
-import com.example.u13197.leitor.model.Local;
-import com.example.u13197.leitor.presenter.LoadLocationPresenter;
-import com.example.u13197.leitor.view.DisplayPlacesView;
+import com.berteodosio.qrlocation.presenter.LoadLocationPresenter;
+import com.berteodosio.qrlocation.view.DisplayPlacesView;
+import com.berteodosio.u13197.leitor.R;
+import com.berteodosio.qrlocation.model.Local;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -41,14 +41,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        getSupportActionBar().setTitle("Mapa");
 
         mPresenter = new LoadLocationPresenter(this, this);
 
@@ -58,7 +51,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         Bundle extras = getIntent().getExtras();
-        Location location = (Location) extras.getSerializable(EXTRA_LOCAL_LOCATION);
+        Location location = extras.getParcelable(EXTRA_LOCAL_LOCATION);
         String text = extras.getString(EXTRA_LOCAL_TEXT);
         mLocal = new Local(location, text);
     }

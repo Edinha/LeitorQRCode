@@ -1,4 +1,4 @@
-package com.example.u13197.leitor;
+package com.berteodosio.u13197.leitor;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

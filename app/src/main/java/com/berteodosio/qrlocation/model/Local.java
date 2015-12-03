@@ -1,4 +1,4 @@
-package com.example.u13197.leitor.model;
+package com.berteodosio.qrlocation.model;
 
 import android.location.Location;
 

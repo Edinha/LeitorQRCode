@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="16dp" >
+    android:layout_marginTop="16dp">
 
     <TextView
         android:layout_marginLeft="16dp"
@@ -37,5 +37,5 @@
         android:layout_below="@id/activity_list_listitem_lng"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/background_dark"/>
+        android:background="@android:color/holo_blue_light"/>
 </RelativeLayout>

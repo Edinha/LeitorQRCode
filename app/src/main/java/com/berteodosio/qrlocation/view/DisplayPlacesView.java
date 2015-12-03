@@ -1,6 +1,6 @@
-package com.example.u13197.leitor.view;
+package com.berteodosio.qrlocation.view;
 
-import com.example.u13197.leitor.model.Local;
+import com.berteodosio.qrlocation.model.Local;
 
 import java.util.List;
 

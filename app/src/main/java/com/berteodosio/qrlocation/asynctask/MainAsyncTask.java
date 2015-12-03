@@ -1,11 +1,11 @@
-package com.example.u13197.leitor.asynctask;
+package com.berteodosio.qrlocation.asynctask;
 
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.example.u13197.leitor.model.Local;
-import com.example.u13197.leitor.xml.XMLManager;
-import com.example.u13197.leitor.presenter.MainPresenter;
+import com.berteodosio.qrlocation.xml.XMLManager;
+import com.berteodosio.qrlocation.model.Local;
+import com.berteodosio.qrlocation.presenter.MainPresenter;
 
 import java.io.IOException;
 

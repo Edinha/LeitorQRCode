@@ -1,4 +1,4 @@
-package com.example.u13197.leitor.adapter;
+package com.berteodosio.qrlocation.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,9 +6,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.u13197.leitor.model.Local;
-import com.example.u13197.leitor.R;
-import com.example.u13197.leitor.activity.ListActivity;
+import com.berteodosio.qrlocation.activity.ListActivity;
+import com.berteodosio.qrlocation.model.Local;
+import com.berteodosio.u13197.leitor.R;
 
 import java.util.List;
 
