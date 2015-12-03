@@ -2,16 +2,13 @@ package com.berteodosio.qrlocation.activity;
 
 import android.location.Location;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
+import com.berteodosio.qrlocation.R;
 import com.berteodosio.qrlocation.presenter.LoadLocationPresenter;
 import com.berteodosio.qrlocation.view.DisplayPlacesView;
-import com.berteodosio.u13197.leitor.R;
-import com.berteodosio.qrlocation.model.Local;
+import com.berteodosio.qrlocation.model.Place;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -32,12 +29,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private boolean mFirstTimeLocationChanged = true;
     private LoadLocationPresenter mPresenter;
 
-    private Local mLocal;
+    private Place mPlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+        setContentView(R.layout.map_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -53,7 +50,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Bundle extras = getIntent().getExtras();
         Location location = extras.getParcelable(EXTRA_LOCAL_LOCATION);
         String text = extras.getString(EXTRA_LOCAL_TEXT);
-        mLocal = new Local(location, text);
+        mPlace = new Place(location, text);
     }
 
     @Override
@@ -75,18 +72,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void displayLocals(List<Local> locals) {
-        for (Local local: locals) {
-            if (local.getText().equals(mLocal.getText()))
+    public void displayLocals(List<Place> places) {
+        for (Place place : places) {
+            if (place.getText().equals(mPlace.getText()))
                 continue;
-            LatLng latLng = new LatLng(local.getLocation().getLatitude(), local.getLocation().getLongitude());
-            mMap.addMarker(new MarkerOptions().position(latLng).title(local.getText()));
+            LatLng latLng = new LatLng(place.getLocation().getLatitude(), place.getLocation().getLongitude());
+            mMap.addMarker(new MarkerOptions().position(latLng).title(place.getText()));
         }
 
-        LatLng latLng = new LatLng(mLocal.getLocation().getLatitude(), mLocal.getLocation().getLongitude());
+        LatLng latLng = new LatLng(mPlace.getLocation().getLatitude(), mPlace.getLocation().getLongitude());
 
         mMap.addMarker(new MarkerOptions().position(latLng)
-                .title(mLocal.getText())
+                .title(mPlace.getText())
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
     }
 }

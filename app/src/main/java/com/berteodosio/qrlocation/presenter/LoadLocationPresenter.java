@@ -3,8 +3,8 @@ package com.berteodosio.qrlocation.presenter;
 import android.content.Context;
 
 import com.berteodosio.qrlocation.asynctask.LoadLocationAsyncTask;
+import com.berteodosio.qrlocation.model.Place;
 import com.berteodosio.qrlocation.view.DisplayPlacesView;
-import com.berteodosio.qrlocation.model.Local;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class LoadLocationPresenter {
 
     }
 
-    public void onPlacesLoaded(List<Local> locals) {
-        mView.displayLocals(locals);
+    public void onPlacesLoaded(List<Place> places) {
+        mView.displayLocals(places);
     }
 }

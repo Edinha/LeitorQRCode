@@ -15,6 +15,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_list" />
+    <include layout="@layout/list_activity_content" />
 
 </android.support.design.widget.CoordinatorLayout>

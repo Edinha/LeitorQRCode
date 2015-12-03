@@ -2,19 +2,16 @@ package com.berteodosio.qrlocation.model;
 
 import android.location.Location;
 
-/**
- * Created by u13197 on 30/11/2015.
- */
-public class Local {
+public class Place {
 
     private Location location;
     private String text;
 
-    public Local() {
+    public Place() {
         this.location = new Location("reverseGeocoded");
     }
 
-    public Local(Location location,String text) {
+    public Place(Location location, String text) {
         this.text = text;
         this.location = location;
 

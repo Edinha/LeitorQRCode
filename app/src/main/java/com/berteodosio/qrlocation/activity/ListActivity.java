@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.berteodosio.qrlocation.R;
 import com.berteodosio.qrlocation.view.DisplayPlacesView;
 import com.berteodosio.qrlocation.adapter.ListAdapter;
 import com.berteodosio.qrlocation.presenter.LoadLocationPresenter;
-import com.berteodosio.qrlocation.model.Local;
-import com.berteodosio.u13197.leitor.R;
+import com.berteodosio.qrlocation.model.Place;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class ListActivity extends AppCompatActivity implements DisplayPlacesView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.list_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -42,15 +42,15 @@ public class ListActivity extends AppCompatActivity implements DisplayPlacesView
 
     // será chamado pelo presenter <?>
     @Override
-    public void displayLocals(List<Local> localList) {
-        mAdapter.updateLocals(localList);
+    public void displayLocals(List<Place> placeList) {
+        mAdapter.updateLocals(placeList);
         Toast.makeText(this, "Coordenadas carregadas", Toast.LENGTH_SHORT).show();
     }
 
-    public void onLocalClick(View v, Local local) {
+    public void onLocalClick(View v, Place place) {
         Intent intent = new Intent(this, MapActivity.class);
-        intent.putExtra(MapActivity.EXTRA_LOCAL_LOCATION, local.getLocation());
-        intent.putExtra(MapActivity.EXTRA_LOCAL_TEXT, local.getText());
+        intent.putExtra(MapActivity.EXTRA_LOCAL_LOCATION, place.getLocation());
+        intent.putExtra(MapActivity.EXTRA_LOCAL_TEXT, place.getText());
         startActivity(intent);
     }
 }

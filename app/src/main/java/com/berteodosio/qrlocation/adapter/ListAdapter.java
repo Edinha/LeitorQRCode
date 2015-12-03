@@ -6,21 +6,21 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.berteodosio.qrlocation.R;
 import com.berteodosio.qrlocation.activity.ListActivity;
-import com.berteodosio.qrlocation.model.Local;
-import com.berteodosio.u13197.leitor.R;
+import com.berteodosio.qrlocation.model.Place;
 
 import java.util.List;
 
 /**
  * Created by u13161 on 30/11/2015.
  */
-public class ListAdapter extends ArrayAdapter<Local> {
-    private List<Local> mLocalList;
+public class ListAdapter extends ArrayAdapter<Place> {
+    private List<Place> mPlaceList;
     private ListActivity mListener;
 
     public ListAdapter(ListActivity listener) {
-        super(listener, R.layout.activity_list_listitem);
+        super(listener, R.layout.list_activity_listitem);
         mListener = listener;
     }
 
@@ -28,7 +28,7 @@ public class ListAdapter extends ArrayAdapter<Local> {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            int res = R.layout.activity_list_listitem;
+            int res = R.layout.list_activity_listitem;
             convertView = LayoutInflater.from(parent.getContext()).inflate(res, parent, false);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
@@ -41,33 +41,33 @@ public class ListAdapter extends ArrayAdapter<Local> {
     }
 
     private void populateViewFromHolder(ViewHolder holder, int position) {
-        final Local local = mLocalList.get(position);
+        final Place place = mPlaceList.get(position);
 
-        holder.mText.setText(local.getText());
-        holder.mLat.setText("Latitude: " + String.valueOf(local.getLocation().getLatitude()));
-        holder.mLng.setText("Longitude: " + String.valueOf(local.getLocation().getLongitude()));
+        holder.mText.setText(place.getText());
+        holder.mLat.setText("Latitude: " + String.valueOf(place.getLocation().getLatitude()));
+        holder.mLng.setText("Longitude: " + String.valueOf(place.getLocation().getLongitude()));
 
         holder.mRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onLocalClick(v, local);
+                mListener.onLocalClick(v, place);
             }
         });
     }
 
-    public void updateLocals(List<Local> localList) {
-        mLocalList = localList;
+    public void updateLocals(List<Place> placeList) {
+        mPlaceList = placeList;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return mLocalList != null? mLocalList.size() : 0;
+        return mPlaceList != null? mPlaceList.size() : 0;
     }
 
     @Override
-    public Local getItem(int position) {
-        return mLocalList.get(position);
+    public Place getItem(int position) {
+        return mPlaceList.get(position);
     }
 
     @Override

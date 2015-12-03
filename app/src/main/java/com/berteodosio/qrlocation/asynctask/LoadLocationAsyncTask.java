@@ -3,8 +3,8 @@ package com.berteodosio.qrlocation.asynctask;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.berteodosio.qrlocation.model.Local;
-import com.berteodosio.qrlocation.xml.XMLManager;
+import com.berteodosio.qrlocation.model.Place;
+import com.berteodosio.qrlocation.xml.FileManager;
 import com.berteodosio.qrlocation.presenter.LoadLocationPresenter;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by bernardo on 03/12/15.
  */
-public class LoadLocationAsyncTask extends AsyncTask<Context, Void, List<Local>> {
+public class LoadLocationAsyncTask extends AsyncTask<Context, Void, List<Place>> {
     private LoadLocationPresenter mPresenter;
 
     public LoadLocationAsyncTask(LoadLocationPresenter presenter) {
@@ -23,9 +23,9 @@ public class LoadLocationAsyncTask extends AsyncTask<Context, Void, List<Local>>
     }
 
     @Override
-    protected List<Local> doInBackground(Context... contexts) {
+    protected List<Place> doInBackground(Context... contexts) {
         try {
-            return XMLManager.readAll(contexts[0]);
+            return FileManager.readPlaces(contexts[0]);
         } catch (XmlPullParserException | IOException e) {
             mPresenter.onListFailed(e);
             return null;
@@ -33,8 +33,8 @@ public class LoadLocationAsyncTask extends AsyncTask<Context, Void, List<Local>>
     }
 
     @Override
-    protected void onPostExecute(List<Local> locals) {
-        if (locals != null)
-            mPresenter.onPlacesLoaded(locals);
+    protected void onPostExecute(List<Place> places) {
+        if (places != null)
+            mPresenter.onPlacesLoaded(places);
     }
 }

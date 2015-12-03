@@ -12,6 +12,6 @@
         android:layout_height="match_parent"
         tools:context=".MapActivity"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        tools:layout="@layout/content_map" />
+        tools:layout="@layout/map_activity_content" />
 
 </RelativeLayout>

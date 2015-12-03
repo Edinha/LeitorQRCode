@@ -15,9 +15,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.berteodosio.qrlocation.model.Local;
+import com.berteodosio.qrlocation.R;
+import com.berteodosio.qrlocation.model.Place;
 import com.berteodosio.qrlocation.presenter.MainPresenter;
-import com.berteodosio.u13197.leitor.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -33,19 +33,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private TextView mText;
     private android.os.Handler handler = new Handler();
 
-    private List<Local> locations;
+    private List<Place> locations;
     private Location atual;
     private GoogleMap map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
 
         mPresenter = new MainPresenter(this);
         mText = (TextView) findViewById(R.id.text);
 
-        locations = new ArrayList<Local>();
+        locations = new ArrayList<Place>();
 
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         /*
 
-        for (Local l : this.locations) {
+        for (Place l : this.locations) {
             LatLng lg = new LatLng(l.getLocation().getLatitude(), l.getLocation().getLongitude());
             this.map.addMarker(new MarkerOptions()
                     .title(l.getText())
@@ -122,14 +122,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 final String result = scanResult.getContents();
 
                 if (result != null) {
-                    mPresenter.savePlace(new Local(atual, result));
+                    mPresenter.savePlace(new Place(atual, result));
                     mText.setText(result);
                     /*
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
                             //guardar o result referente aquela localização
-                            MainActivity.this.locations.add(new Local(atual, result));
+                            MainActivity.this.locations.add(new Place(atual, result));
                         }
                     });
                     */

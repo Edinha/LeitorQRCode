@@ -3,8 +3,8 @@ package com.berteodosio.qrlocation.asynctask;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.berteodosio.qrlocation.xml.XMLManager;
-import com.berteodosio.qrlocation.model.Local;
+import com.berteodosio.qrlocation.model.Place;
+import com.berteodosio.qrlocation.xml.FileManager;
 import com.berteodosio.qrlocation.presenter.MainPresenter;
 
 import java.io.IOException;
@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Created by bernardo on 03/12/15.
  */
-public class MainAsyncTask extends AsyncTask<Local, Void, Boolean> {
+public class MainAsyncTask extends AsyncTask<Place, Void, Boolean> {
     private MainPresenter mPresenter;
     private Context mContext;
 
@@ -22,9 +22,9 @@ public class MainAsyncTask extends AsyncTask<Local, Void, Boolean> {
     }
 
     @Override
-    protected Boolean doInBackground(Local... params) {
+    protected Boolean doInBackground(Place... params) {
         try {
-            XMLManager.writeLocal(params[0], mContext);
+            FileManager.write(params[0], mContext);
         } catch (IOException e) {
             return false; // TODO melhorar tratamento desse erro
         }
