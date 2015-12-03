@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">Leitor</string>
-    <string name="title_activity_list">ListActivity</string>
+    <string name="app_name">QR</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
