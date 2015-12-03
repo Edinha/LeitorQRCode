@@ -1,11 +1,14 @@
-package com.example.u13197.leitor;
+package com.example.u13197.leitor.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.example.u13197.leitor.model.Local;
+import com.example.u13197.leitor.R;
+import com.example.u13197.leitor.activity.ListActivity;
 
 import java.util.List;
 

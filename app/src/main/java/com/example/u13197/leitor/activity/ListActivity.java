@@ -1,21 +1,24 @@
-package com.example.u13197.leitor;
+package com.example.u13197.leitor.activity;
 
-import android.location.Location;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.io.IOException;
+import com.example.u13197.leitor.adapter.ListAdapter;
+import com.example.u13197.leitor.presenter.LoadLocationPresenter;
+import com.example.u13197.leitor.model.Local;
+import com.example.u13197.leitor.R;
+import com.example.u13197.leitor.view.DisplayPlacesView;
+
 import java.util.List;
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity implements DisplayPlacesView {
 
-    private ListPresenter mPresenter;
+    private LoadLocationPresenter mPresenter;
     private ListAdapter mAdapter;
 
     @Override
@@ -27,7 +30,7 @@ public class ListActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Lista");
 
-        mPresenter = new ListPresenter(this);
+        mPresenter = new LoadLocationPresenter(this, this);
 
         mAdapter = new ListAdapter(this);
 
@@ -38,12 +41,16 @@ public class ListActivity extends AppCompatActivity {
     }
 
     // será chamado pelo presenter <?>
+    @Override
     public void displayLocals(List<Local> localList) {
         mAdapter.updateLocals(localList);
         Toast.makeText(this, "Coordenadas carregadas", Toast.LENGTH_SHORT).show();
     }
 
     public void onLocalClick(View v, Local local) {
-        // TODO: exibir mapa
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.putExtra(MapActivity.EXTRA_LOCAL_LOCATION, local.getLocation());
+        intent.putExtra(MapActivity.EXTRA_LOCAL_TEXT, local.getText());
+        startActivity(intent);
     }
 }

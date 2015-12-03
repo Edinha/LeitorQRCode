@@ -1,9 +1,11 @@
-package com.example.u13197.leitor;
+package com.example.u13197.leitor.xml;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Environment;
 import android.util.Xml;
+
+import com.example.u13197.leitor.model.Local;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -12,7 +14,6 @@ import org.xmlpull.v1.XmlSerializer;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;

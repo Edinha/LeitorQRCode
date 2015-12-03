@@ -2,15 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp" >
+    android:layout_marginTop="16dp" >
 
     <TextView
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:id="@+id/activity_list_listitem_text"
         android:text="Uma frase aqui"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <TextView
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:id="@+id/activity_list_listitem_lat"
         android:text="Latitude"
         android:layout_width="wrap_content"
@@ -19,8 +23,9 @@
         android:layout_below="@id/activity_list_listitem_text"/>
 
     <TextView
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/activity_list_listitem_text"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/activity_list_listitem_lat"
         android:id="@+id/activity_list_listitem_lng"
         android:text="Longitude"
         android:layout_width="wrap_content"
@@ -28,4 +33,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"/>
 
+    <View
+        android:layout_below="@id/activity_list_listitem_lng"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/background_dark"/>
 </RelativeLayout>

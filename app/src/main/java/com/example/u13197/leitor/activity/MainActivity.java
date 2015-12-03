@@ -1,4 +1,4 @@
-package com.example.u13197.leitor;
+package com.example.u13197.leitor.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.u13197.leitor.model.Local;
+import com.example.u13197.leitor.presenter.MainPresenter;
+import com.example.u13197.leitor.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.zxing.integration.android.IntentIntegrator;

@@ -1,7 +1,11 @@
-package com.example.u13197.leitor;
+package com.example.u13197.leitor.asynctask;
 
 import android.content.Context;
 import android.os.AsyncTask;
+
+import com.example.u13197.leitor.model.Local;
+import com.example.u13197.leitor.xml.XMLManager;
+import com.example.u13197.leitor.presenter.LoadLocationPresenter;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -11,10 +15,10 @@ import java.util.List;
 /**
  * Created by bernardo on 03/12/15.
  */
-public class ListAsyncTask extends AsyncTask<Context, Void, List<Local>> {
-    private ListPresenter mPresenter;
+public class LoadLocationAsyncTask extends AsyncTask<Context, Void, List<Local>> {
+    private LoadLocationPresenter mPresenter;
 
-    public ListAsyncTask(ListPresenter presenter) {
+    public LoadLocationAsyncTask(LoadLocationPresenter presenter) {
         mPresenter = presenter;
     }
 

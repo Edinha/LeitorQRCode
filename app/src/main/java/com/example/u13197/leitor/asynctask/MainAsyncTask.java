@@ -1,7 +1,11 @@
-package com.example.u13197.leitor;
+package com.example.u13197.leitor.asynctask;
 
 import android.content.Context;
 import android.os.AsyncTask;
+
+import com.example.u13197.leitor.model.Local;
+import com.example.u13197.leitor.xml.XMLManager;
+import com.example.u13197.leitor.presenter.MainPresenter;
 
 import java.io.IOException;
 

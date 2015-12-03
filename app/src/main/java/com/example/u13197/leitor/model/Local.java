@@ -1,4 +1,4 @@
-package com.example.u13197.leitor;
+package com.example.u13197.leitor.model;
 
 import android.location.Location;
 
