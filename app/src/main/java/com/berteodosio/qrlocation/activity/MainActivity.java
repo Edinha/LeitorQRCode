@@ -28,6 +28,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    // faz a interação entre a activity e o arquivo
     private MainPresenter mPresenter;
 
     private TextView mText;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
-            // quando a posição muda, atualiza o location
+            // pega a posição atual
             public void onLocationChanged(Location location) {
                 if (MainActivity.this.atual == null)    // primeira vez
                 {
@@ -76,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public void onScanClick(View v) {
-        //iniciar o scan de qr code
         if (atual != null)
             new IntentIntegrator(this).initiateScan();
         else
@@ -85,20 +85,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public void onListClick(View v) {
-        // mostrar google maps com as parada tudo
-        // TODO: open listview
-
-        /*
-
-        for (Place l : this.locations) {
-            LatLng lg = new LatLng(l.getLocation().getLatitude(), l.getLocation().getLongitude());
-            this.map.addMarker(new MarkerOptions()
-                    .title(l.getText())
-                    .position(lg));
-        }
-
-        */
-
         Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);
     }
@@ -122,17 +108,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 final String result = scanResult.getContents();
 
                 if (result != null) {
+                    // salva a localização
                     mPresenter.savePlace(new Place(atual, result));
                     mText.setText(result);
-                    /*
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            //guardar o result referente aquela localização
-                            MainActivity.this.locations.add(new Place(atual, result));
-                        }
-                    });
-                    */
                 }
         }
     }

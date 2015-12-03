@@ -15,6 +15,7 @@ public class MainPresenter {
     }
 
     public void savePlace(Place place) {
+        // salva o lugar
         new MainAsyncTask(this, mView).execute(place);
     }
 

@@ -22,6 +22,7 @@ import java.util.List;
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleMap.OnMyLocationChangeListener, DisplayPlacesView {
 
+    // para pegar o Place passado pelo intent
     public static final String EXTRA_LOCAL_LOCATION = "extra_local_location";
     public static final String EXTRA_LOCAL_TEXT = "extra_local_text";
 
@@ -39,7 +40,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle("Mapa");
-
         mPresenter = new LoadLocationPresenter(this, this);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -50,6 +50,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Bundle extras = getIntent().getExtras();
         Location location = extras.getParcelable(EXTRA_LOCAL_LOCATION);
         String text = extras.getString(EXTRA_LOCAL_TEXT);
+
+        // criado com as informações recebidas do intent
         mPlace = new Place(location, text);
     }
 
@@ -58,13 +60,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
         mMap.setOnMyLocationChangeListener(this);
-
         mPresenter.loadLocalsFromXML();
     }
 
     @Override
     public void onMyLocationChange(Location location) {
         LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+
+        // para dar um "zoom" na localização atual
         if (mFirstTimeLocationChanged) {
             mFirstTimeLocationChanged = false;
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 13.5f));
@@ -73,6 +76,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void displayLocals(List<Place> places) {
+        // adiciona as marcadas dos locais carregados do arquivo XML
         for (Place place : places) {
             if (place.getText().equals(mPlace.getText()))
                 continue;
@@ -82,6 +86,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         LatLng latLng = new LatLng(mPlace.getLocation().getLatitude(), mPlace.getLocation().getLongitude());
 
+        // adiciona a marca rosa da localização que foi clicada
         mMap.addMarker(new MarkerOptions().position(latLng)
                 .title(mPlace.getText())
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));

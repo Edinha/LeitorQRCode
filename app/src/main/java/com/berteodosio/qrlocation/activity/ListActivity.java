@@ -31,23 +31,22 @@ public class ListActivity extends AppCompatActivity implements DisplayPlacesView
         getSupportActionBar().setTitle("Lista");
 
         mPresenter = new LoadLocationPresenter(this, this);
-
         mAdapter = new ListAdapter(this);
 
         ListView listView = (ListView) findViewById(R.id.list_activity_listView);
         listView.setAdapter(mAdapter);
 
-        mPresenter.loadLocalsFromXML();
+        mPresenter.loadLocalsFromXML();     // carrega as coordenadas do arquivo XML
     }
 
-    // será chamado pelo presenter <?>
-    @Override
+    @Override   // chamado pelo Presenter
     public void displayLocals(List<Place> placeList) {
         mAdapter.updateLocals(placeList);
         Toast.makeText(this, "Coordenadas carregadas", Toast.LENGTH_SHORT).show();
     }
 
     public void onLocalClick(View v, Place place) {
+        // inicia a Activity do mapa, passando o Place clicado através do intent
         Intent intent = new Intent(this, MapActivity.class);
         intent.putExtra(MapActivity.EXTRA_LOCAL_LOCATION, place.getLocation());
         intent.putExtra(MapActivity.EXTRA_LOCAL_TEXT, place.getText());
